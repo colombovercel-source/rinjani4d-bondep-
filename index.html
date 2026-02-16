@@ -8,93 +8,127 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ===== Body & Wrapper ===== */
 body{
     margin:0;
-    background:#1f1f1f;
     font-family:'Inter',sans-serif;
     display:flex;
     justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background: linear-gradient(135deg, #B8860B, #FFD700, #FFFFFF);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     padding:20px 0;
+}
+
+@keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
 .wrapper{
     width:95%;
     max-width:480px;
+    text-align:center;
 }
 
+/* ===== Brand / Logo ===== */
 .brand{
-    text-align:center;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
 .brand h1{
     font-family:'Playfair Display',serif;
-    color:#d4af37;
+    font-size:36px; /* lebih jelas */
     margin:0;
-    font-size:28px;
-    letter-spacing:1.5px;
+    background: linear-gradient(90deg,#B8860B,#FFD700); /* Kuning Tua → Kuning Cerah */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
 .brand p{
     margin-top:5px;
-    font-size:13px;
-    color:#ddd;
+    font-size:14px;
+    color:#f0f0f0;
 }
 
+/* ===== Cards ===== */
 .card{
-    background:#f9f9f9;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.4);
+    background: rgba(255,255,255,0.95);
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.3);
     margin-bottom:20px;
-    border:1px solid rgba(212,175,55,0.3);
+    border:1px solid rgba(184,134,11,0.3);
+    transition: transform 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-3px);
 }
 
 .card h2{
-    text-align:center;
-    color:#d4af37;
     margin-top:0;
-    font-size:18px;
+    font-size:20px;
+    color:#B8860B;
 }
 
+/* ===== Input ===== */
 input{
     width:100%;
-    padding:12px;
-    margin-bottom:12px;
-    border-radius:6px;
-    border:1px solid #ccc;
-    font-size:14px;
+    padding:14px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:2px solid #ccc;
+    font-size:15px;
+    transition: all 0.3s ease;
 }
 
 input:focus{
     outline:none;
-    border-color:#d4af37;
+    border-image-slice:1;
+    border-width:2px;
+    border-image-source: linear-gradient(90deg,#B8860B,#FFD700);
 }
 
+/* ===== Button ===== */
 .button{
     width:100%;
-    padding:14px;
-    background:#d4af37;
+    padding:15px;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
+    background: linear-gradient(90deg,#B8860B,#FFD700);
+    color:#fff;
     font-weight:600;
+    font-size:16px;
     cursor:pointer;
+    transition: all 0.3s ease;
 }
 
 .button:hover{
-    background:#b8932f;
+    background: linear-gradient(90deg,#FFD700,#B8860B);
+    transform: translateY(-2px);
 }
 
+.button:active{
+    transform: scale(0.97);
+}
+
+/* ===== Status & History ===== */
 .detail{
     display:flex;
     justify-content:space-between;
     font-size:14px;
     margin-bottom:8px;
+    color:#B8860B;
 }
 
 .progress-container{
     width:100%;
-    height:10px;
+    height:12px;
     background:#ddd;
     border-radius:20px;
     margin-top:15px;
@@ -104,7 +138,7 @@ input:focus{
 .progress-bar{
     height:100%;
     width:0%;
-    background:linear-gradient(270deg,#ffd700,#fff0a0,#ffd700);
+    background: linear-gradient(270deg,#B8860B,#FFD700,#B8860B);
     background-size:400% 400%;
     animation:shimmer 2s linear infinite;
 }
@@ -119,7 +153,7 @@ input:focus{
     text-align:center;
     font-size:13px;
     margin-top:10px;
-    color:#444;
+    color:#B8860B;
 }
 
 .history-container{
@@ -138,13 +172,15 @@ input:focus{
     border-bottom:1px solid #eee;
 }
 
+/* ===== Footer ===== */
 .footer{
     text-align:center;
     font-size:12px;
-    color:#aaa;
+    color:#B8860B;
     margin-top:10px;
 }
 
+/* ===== Modal ===== */
 .modal{
     display:none;
     position:fixed;
@@ -152,7 +188,7 @@ input:focus{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.7);
+    background:rgba(0,0,0,0.6);
     justify-content:center;
     align-items:center;
 }
@@ -167,7 +203,7 @@ input:focus{
 }
 
 .modal h2{
-    color:#d4af37;
+    color:#B8860B;
 }
 
 .modal button{
@@ -180,7 +216,7 @@ input:focus{
 }
 
 .button-close{background:#ccc;}
-.button-cs{background:#d4af37;}
+.button-cs{background: linear-gradient(90deg,#B8860B,#FFD700); color:#fff;}
 </style>
 </head>
 <body>
@@ -195,7 +231,6 @@ input:focus{
 <div class="card" id="loginCard">
     <h2>Member Login</h2>
     <input type="text" id="username" placeholder="User ID">
-    <input type="password" id="password" placeholder="Password">
     <button class="button" onclick="login()">Login</button>
 </div>
 
@@ -208,7 +243,7 @@ input:focus{
     <div class="detail"><span>Bonus 100%</span><span id="displayBonus">-</span></div>
     <div class="detail"><span>Turnover</span><span id="displayTurnover">-</span></div>
 
-    <button class="button" onclick="activateBonus()">Aktivasi Bonus</button>
+    <button class="button" id="claimButton" onclick="activateBonus()">Aktivasi Bonus</button>
 
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
@@ -233,7 +268,6 @@ input:focus{
 </div>
 
 <script>
-
 let names = ["agus","mika","miswan","rizal","budi","sinta","rahma","andika","rudi","tania","fajar","putri","dian","farhan","yoga","zaki","rio","nina","sari","doni"];
 let historyData = [];
 
@@ -257,13 +291,32 @@ function renderHistory(){
 renderHistory();
 
 function login(){
+    const username = document.getElementById("username").value;
+    if(!username){ alert("Silakan isi User ID"); return;}
+
     document.getElementById("loginCard").style.display="none";
     document.getElementById("bonusCard").style.display="block";
+
+    const today = new Date().toISOString().split('T')[0];
+    const claimedUsers = JSON.parse(localStorage.getItem("claimedUsers")||"{}");
+    if(claimedUsers[username]===today){
+        document.getElementById("claimButton").disabled=true;
+        document.getElementById("statusText").innerText="Anda sudah klaim bonus hari ini.";
+    }
 }
 
 function activateBonus(){
+    const username = document.getElementById("username").value;
+    const today = new Date().toISOString().split('T')[0];
+    const claimedUsers = JSON.parse(localStorage.getItem("claimedUsers")||"{}");
+
+    if(claimedUsers[username]===today){
+        alert("User ini sudah klaim bonus hari ini.");
+        return;
+    }
+
     let deposit=parseInt(document.getElementById("deposit").value);
-    if(!deposit||deposit<10000){alert("Minimal deposit 10.000");return;}
+    if(!deposit || deposit<10000){ alert("Minimal deposit 10.000"); return; }
 
     let bonus=deposit>1000000?1000000:deposit;
     let turnover=deposit<=50000?"0x":(deposit<=200000?"1x":"2x");
@@ -272,9 +325,12 @@ function activateBonus(){
     document.getElementById("displayBonus").innerText="IDR "+bonus.toLocaleString('id-ID');
     document.getElementById("displayTurnover").innerText=turnover;
 
-    historyData.unshift({userId:document.getElementById("username").value,deposit});
-    if(historyData.length>20)historyData.pop();
+    historyData.unshift({userId:username,deposit});
+    if(historyData.length>20) historyData.pop();
     renderHistory();
+
+    claimedUsers[username]=today;
+    localStorage.setItem("claimedUsers", JSON.stringify(claimedUsers));
 
     let width=0;
     let progressBar=document.getElementById("progressBar");
@@ -291,6 +347,7 @@ function activateBonus(){
                  Bonus: IDR ${bonus.toLocaleString('id-ID')}<br>
                  Turnover: ${turnover}`;
             document.getElementById("bonusModal").style.display="flex";
+            document.getElementById("claimButton").disabled=true;
         }
     },40);
 }
@@ -298,7 +355,6 @@ function activateBonus(){
 function closeModal(){
     document.getElementById("bonusModal").style.display="none";
 }
-
 </script>
 
 </body>
