@@ -41,9 +41,9 @@ body{
 
 .brand h1{
     font-family:'Playfair Display',serif;
-    font-size:36px; /* lebih jelas */
+    font-size:36px; 
     margin:0;
-    background: linear-gradient(90deg,#B8860B,#FFD700); /* Kuning Tua → Kuning Cerah */
+    background: linear-gradient(90deg,#B8860B,#FFD700); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
@@ -228,17 +228,17 @@ input:focus{
     <p>Premium Member System</p>
 </div>
 
+<!-- Login Card -->
 <div class="card" id="loginCard">
     <h2>Member Login</h2>
     <input type="text" id="username" placeholder="User ID">
-    <!-- Tambahan Voucher -->
-    <input type="text" id="voucher" placeholder="Kode Voucher" value="RINJANIJP">
+    <input type="text" id="voucher" placeholder="Kode Voucher">
     <button class="button" onclick="login()">Login</button>
 </div>
 
+<!-- Bonus Card -->
 <div class="card" id="bonusCard" style="display:none;">
     <h2>BONUS DEPOSIT</h2>
-
     <input type="number" id="deposit" placeholder="Masukkan Deposit (min 10.000)" min="10000">
 
     <div class="detail"><span>Deposit</span><span id="displayDeposit">-</span></div>
@@ -273,6 +273,7 @@ input:focus{
 let names = ["agus","mika","miswan","rizal","budi","sinta","rahma","andika","rudi","tania","fajar","putri","dian","farhan","yoga","zaki","rio","nina","sari","doni"];
 let historyData = [];
 
+// Generate dummy history
 for(let i=0;i<20;i++){
     let randomName = names[Math.floor(Math.random()*names.length)];
     let userId = randomName + Math.floor(Math.random()*999);
@@ -292,12 +293,13 @@ function renderHistory(){
 }
 renderHistory();
 
+// Login Function (voucher case-insensitive)
 function login(){
-    const username = document.getElementById("username").value;
-    const voucher = document.getElementById("voucher").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const voucher = document.getElementById("voucher").value.trim().toUpperCase();
 
     if(!username){ alert("Silakan isi User ID"); return;}
-    if(voucher!=="Silakan isi VOUCHER "){ alert("Kode voucher salah!"); return;}
+    if(voucher !== "RINJANIJP"){ alert("Kode voucher salah!"); return;}
 
     document.getElementById("loginCard").style.display="none";
     document.getElementById("bonusCard").style.display="block";
@@ -310,6 +312,7 @@ function login(){
     }
 }
 
+// Activate Bonus
 function activateBonus(){
     const username = document.getElementById("username").value;
     const today = new Date().toISOString().split('T')[0];
@@ -357,6 +360,7 @@ function activateBonus(){
     },40);
 }
 
+// Close Modal
 function closeModal(){
     document.getElementById("bonusModal").style.display="none";
 }
