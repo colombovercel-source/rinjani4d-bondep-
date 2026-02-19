@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-/* ===== Body & Wrapper ===== */
 body{
     margin:0;
     font-family:'Inter',sans-serif;
@@ -21,24 +20,19 @@ body{
     animation: gradientBG 15s ease infinite;
     padding:20px 0;
 }
-
 @keyframes gradientBG{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
-
 .wrapper{
     width:95%;
     max-width:480px;
     text-align:center;
 }
-
-/* ===== Brand / Logo ===== */
 .brand{
     margin-bottom:25px;
 }
-
 .brand h1{
     font-family:'Playfair Display',serif;
     font-size:36px; 
@@ -48,14 +42,11 @@ body{
     -webkit-text-fill-color: transparent;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
-
 .brand p{
     margin-top:5px;
     font-size:14px;
     color:#f0f0f0;
 }
-
-/* ===== Cards ===== */
 .card{
     background: rgba(255,255,255,0.95);
     padding:25px;
@@ -65,18 +56,14 @@ body{
     border:1px solid rgba(184,134,11,0.3);
     transition: transform 0.3s ease;
 }
-
 .card:hover{
     transform: translateY(-3px);
 }
-
 .card h2{
     margin-top:0;
     font-size:20px;
     color:#B8860B;
 }
-
-/* ===== Input ===== */
 input{
     width:100%;
     padding:14px;
@@ -86,15 +73,12 @@ input{
     font-size:15px;
     transition: all 0.3s ease;
 }
-
 input:focus{
     outline:none;
     border-image-slice:1;
     border-width:2px;
     border-image-source: linear-gradient(90deg,#B8860B,#FFD700);
 }
-
-/* ===== Button ===== */
 .button{
     width:100%;
     padding:15px;
@@ -107,17 +91,13 @@ input:focus{
     cursor:pointer;
     transition: all 0.3s ease;
 }
-
 .button:hover{
     background: linear-gradient(90deg,#FFD700,#B8860B);
     transform: translateY(-2px);
 }
-
 .button:active{
     transform: scale(0.97);
 }
-
-/* ===== Status & History ===== */
 .detail{
     display:flex;
     justify-content:space-between;
@@ -125,7 +105,6 @@ input:focus{
     margin-bottom:8px;
     color:#B8860B;
 }
-
 .progress-container{
     width:100%;
     height:12px;
@@ -134,7 +113,6 @@ input:focus{
     margin-top:15px;
     overflow:hidden;
 }
-
 .progress-bar{
     height:100%;
     width:0%;
@@ -142,20 +120,17 @@ input:focus{
     background-size:400% 400%;
     animation:shimmer 2s linear infinite;
 }
-
 @keyframes shimmer{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
-
 .status-text{
     text-align:center;
     font-size:13px;
     margin-top:10px;
     color:#B8860B;
 }
-
 .history-container{
     max-height:200px;
     overflow-y:auto;
@@ -163,7 +138,6 @@ input:focus{
     border-top:1px solid #ddd;
     padding-top:10px;
 }
-
 .history-item{
     display:flex;
     justify-content:space-between;
@@ -171,16 +145,12 @@ input:focus{
     padding:6px 0;
     border-bottom:1px solid #eee;
 }
-
-/* ===== Footer ===== */
 .footer{
     text-align:center;
     font-size:12px;
     color:#B8860B;
     margin-top:10px;
 }
-
-/* ===== Modal ===== */
 .modal{
     display:none;
     position:fixed;
@@ -192,7 +162,6 @@ input:focus{
     justify-content:center;
     align-items:center;
 }
-
 .modal-content{
     background:#fff;
     padding:25px;
@@ -201,11 +170,9 @@ input:focus{
     width:90%;
     max-width:350px;
 }
-
 .modal h2{
     color:#B8860B;
 }
-
 .modal button{
     margin:5px;
     padding:10px 15px;
@@ -214,7 +181,6 @@ input:focus{
     cursor:pointer;
     font-weight:600;
 }
-
 .button-close{background:#ccc;}
 .button-cs{background: linear-gradient(90deg,#B8860B,#FFD700); color:#fff;}
 </style>
@@ -232,13 +198,16 @@ input:focus{
 <div class="card" id="loginCard">
     <h2>Member Login</h2>
     <input type="text" id="username" placeholder="User ID">
-    <input type="text" id="voucher" placeholder="Kode Voucher">
     <button class="button" onclick="login()">Login</button>
 </div>
 
 <!-- Bonus Card -->
 <div class="card" id="bonusCard" style="display:none;">
     <h2>BONUS DEPOSIT</h2>
+    
+    <!-- Voucher muncul setelah login -->
+    <input type="text" id="voucher" placeholder="Kode Voucher">
+
     <input type="number" id="deposit" placeholder="Masukkan Deposit (min 10.000)" min="10000">
 
     <div class="detail"><span>Deposit</span><span id="displayDeposit">-</span></div>
@@ -293,16 +262,16 @@ function renderHistory(){
 }
 renderHistory();
 
-// Login Function (voucher case-insensitive)
+// Login hanya dengan User ID
 function login(){
     const username = document.getElementById("username").value.trim();
-    const voucher = document.getElementById("voucher").value.trim().toUpperCase();
-
     if(!username){ alert("Silakan isi User ID"); return;}
-    if(voucher !== "RINJANIJP"){ alert("Kode voucher salah!"); return;}
 
     document.getElementById("loginCard").style.display="none";
     document.getElementById("bonusCard").style.display="block";
+
+    // Tampilkan kolom voucher setelah login
+    document.getElementById("voucher").style.display="block";
 
     const today = new Date().toISOString().split('T')[0];
     const claimedUsers = JSON.parse(localStorage.getItem("claimedUsers")||"{}");
@@ -315,9 +284,11 @@ function login(){
 // Activate Bonus
 function activateBonus(){
     const username = document.getElementById("username").value;
+    const voucher = document.getElementById("voucher").value.trim().toUpperCase();
+    if(voucher !== "RINJANIJP"){ alert("Kode voucher salah!"); return;}
+
     const today = new Date().toISOString().split('T')[0];
     const claimedUsers = JSON.parse(localStorage.getItem("claimedUsers")||"{}");
-
     if(claimedUsers[username]===today){
         alert("User ini sudah klaim bonus hari ini.");
         return;
