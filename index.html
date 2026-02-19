@@ -231,6 +231,8 @@ input:focus{
 <div class="card" id="loginCard">
     <h2>Member Login</h2>
     <input type="text" id="username" placeholder="User ID">
+    <!-- Tambahan Voucher -->
+    <input type="text" id="voucher" placeholder="Kode Voucher" value="RINJANIJP">
     <button class="button" onclick="login()">Login</button>
 </div>
 
@@ -292,7 +294,10 @@ renderHistory();
 
 function login(){
     const username = document.getElementById("username").value;
+    const voucher = document.getElementById("voucher").value.trim();
+
     if(!username){ alert("Silakan isi User ID"); return;}
+    if(voucher!=="RINJANIJP"){ alert("Kode voucher salah!"); return;}
 
     document.getElementById("loginCard").style.display="none";
     document.getElementById("bonusCard").style.display="block";
